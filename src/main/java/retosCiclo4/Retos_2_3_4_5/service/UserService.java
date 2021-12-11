@@ -27,7 +27,6 @@ public class UserService {
     }
 
     public Optional<User> getUser(int id) {
-        
         return userRepository.getUser(id);
     }
 
@@ -73,6 +72,9 @@ public class UserService {
                 }
                 if (user.getZone() != null) {
                     userDb.get().setZone(user.getZone());
+                }
+                if (user.getType() != null) {
+                    userDb.get().setType(user.getType());
                 }
                 
                 userRepository.update(userDb.get());
