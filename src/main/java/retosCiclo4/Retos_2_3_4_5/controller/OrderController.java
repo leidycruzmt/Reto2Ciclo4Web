@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import retosCiclo4.Retos_2_3_4_5.model.Orders;
+import retosCiclo4.Retos_2_3_4_5.model.Order;
 import retosCiclo4.Retos_2_3_4_5.service.OrderService;
 
 /**
@@ -35,24 +35,24 @@ public class OrderController {
     private OrderService ordersService;
 
     @GetMapping("/all")
-    public List<Orders> getAll() {
+    public List<Order> getAll() {
         return ordersService.getAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Orders> getOrder(@PathVariable("id") int id) {
+    public Optional<Order> getOrder(@PathVariable("id") int id) {
         return ordersService.getOrder(id);
     }
 
     @PostMapping("/new")
     @ResponseStatus(HttpStatus.CREATED)
-    public Orders create(@RequestBody Orders gadget) {
+    public Order create(@RequestBody Order gadget) {
         return ordersService.create(gadget);
     }
 
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Orders update(@RequestBody Orders gadget) {
+    public Order update(@RequestBody Order gadget) {
         return ordersService.update(gadget);
     }
 
@@ -64,25 +64,25 @@ public class OrderController {
 
     //Reto 3:Ordenes de pedido asociadas a los asesores de una zona
     @GetMapping("/zona/{zona}")
-    public List<Orders> findByZone(@PathVariable("zona") String zona) {
+    public List<Order> findByZone(@PathVariable("zona") String zona) {
         return ordersService.findByZone(zona);
     }
     //Métodos del reto 4
 	//Reto 4: Ordenes de un asesor
 	@GetMapping("/salesman/{id}")
-	public List<Orders> ordersSalesManByID(@PathVariable("id") Integer id){
+	public List<Order> ordersSalesManByID(@PathVariable("id") Integer id){
     	return ordersService.ordersSalesManByID(id);
 	}
     
  	//Reto 4: Ordenes de un asesor x Estado
 	@GetMapping("/state/{state}/{id}")
-	public List<Orders> ordersSalesManByState(@PathVariable("state") String state, @PathVariable("id") Integer id){
+	public List<Order> ordersSalesManByState(@PathVariable("state") String state, @PathVariable("id") Integer id){
     	return ordersService.ordersSalesManByState(state, id);
 	}
     
 	//Reto 4: Ordenes de un asesor x fecha
 	@GetMapping("/date/{date}/{id}")
-	public List<Orders> ordersSalesManByDate(@PathVariable("date") String dateStr, @PathVariable("id") Integer id) {
+	public List<Order> ordersSalesManByDate(@PathVariable("date") String dateStr, @PathVariable("id") Integer id) {
     	return ordersService.ordersSalesManByDate(dateStr,id);
 	}
 

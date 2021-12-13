@@ -23,7 +23,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Orders {
+public class Order {
     
     public static String PENDING = "Pendiente";
     public static String APROVED = "Aprobada";

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import retosCiclo4.Retos_2_3_4_5.model.Orders;
+import retosCiclo4.Retos_2_3_4_5.model.Order;
 import retosCiclo4.Retos_2_3_4_5.repository.OrderRepository;
 
 /**
@@ -21,18 +21,18 @@ public class OrderService {
     @Autowired
     private OrderRepository ordersRepository;
 
-    public List<Orders> getAll() {
+    public List<Order> getAll() {
         return ordersRepository.getAll();
     }
 
-    public Optional<Orders> getOrder(int id) {
+    public Optional<Order> getOrder(int id) {
         return ordersRepository.getOrder(id);
     }
 
-    public Orders create(Orders orders) {
+    public Order create(Order orders) {
 
         //obtiene el maximo id existente en la coleccion
-        Optional<Orders> orderIdMaxima = ordersRepository.lastUserId();
+        Optional<Order> orderIdMaxima = ordersRepository.lastUserId();
 
         //si el id de la orden que se recibe como parametro es nulo, entonces valida el maximo id existente en base de datos
         if (orders.getId() == null) {
@@ -45,7 +45,7 @@ public class OrderService {
             }
         }
 
-        Optional<Orders> e = ordersRepository.getOrder(orders.getId());
+        Optional<Order> e = ordersRepository.getOrder(orders.getId());
         if (e.isEmpty()) {
             return ordersRepository.create(orders);
         } else {
@@ -53,10 +53,10 @@ public class OrderService {
         }
     }
 
-    public Orders update(Orders order) {
+    public Order update(Order order) {
 
         if (order.getId() != null) {
-            Optional<Orders> orderDb = ordersRepository.getOrder(order.getId());
+            Optional<Order> orderDb = ordersRepository.getOrder(order.getId());
             if (!orderDb.isEmpty()) {
                 if (order.getStatus() != null) {
                     orderDb.get().setStatus(order.getStatus());
@@ -80,22 +80,22 @@ public class OrderService {
     }
 
     //Ordenes de pedido asociadas a los asesores de una zona
-    public List<Orders> findByZone(String zona) {
+    public List<Order> findByZone(String zona) {
         return ordersRepository.findByZone(zona);
     }
     
      //Métodos del reto 4
 	//Reto 4: Ordenes de un asesor
-	public List<Orders> ordersSalesManByID(Integer id){
+	public List<Order> ordersSalesManByID(Integer id){
     	return ordersRepository.ordersSalesManByID(id);
 	}
 //Reto 4: Ordenes de un asesor x Estado
-	public List<Orders> ordersSalesManByState(String state, Integer id){
+	public List<Order> ordersSalesManByState(String state, Integer id){
     	return ordersRepository.ordersSalesManByState(state, id);
 	}
     
 	//Reto 4: Ordenes de un asesor x fecha
-	public List<Orders> ordersSalesManByDate(String dateStr, Integer id) {
+	public List<Order> ordersSalesManByDate(String dateStr, Integer id) {
     	return ordersRepository.ordersSalesManByDate(dateStr,id);
 	}
 
