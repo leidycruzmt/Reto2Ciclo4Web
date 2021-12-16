@@ -8,6 +8,7 @@ package retosCiclo4.Retos_2_3_4_5.repository;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
 import retosCiclo4.Retos_2_3_4_5.interfaces.UserInterface;
 import retosCiclo4.Retos_2_3_4_5.model.User;
@@ -21,6 +22,9 @@ public class UserRepository {
 
     @Autowired
     private UserInterface userCrudRepository;
+    
+    @Autowired
+    private MongoTemplate mongoTemplate;
 
     public List<User> getAll() {
         return (List<User>) userCrudRepository.findAll();
@@ -54,6 +58,10 @@ public class UserRepository {
     
     public Optional<User> lastUserId(){
         return userCrudRepository.findTopByOrderByIdDesc();
+    }
+    
+    public List<User> birthtDayList(String monthBirthtDay) {
+        return userCrudRepository.findByMonthBirthtDay(monthBirthtDay);
     }
 
 }

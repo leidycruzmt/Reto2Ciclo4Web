@@ -40,4 +40,13 @@ public class CleaningProductRepository {
     public void delete(CleaningProduct product) {
         repository.delete(product);
     }
+    
+     //Reto 5
+    public List<CleaningProduct> productByPrice(double precio) {
+        return repository.findByPriceLessThanEqual(precio);
+    }
+
+    public List<CleaningProduct> findByDescriptionLike(String description) {
+        return repository.findByDescriptionLike(description);
+    }
 }

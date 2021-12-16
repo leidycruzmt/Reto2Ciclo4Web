@@ -61,5 +61,16 @@ public class CleaningProductController {
     public boolean delete(@PathVariable("id") Integer id) {
         return accessoryService.delete(id);
     }
+    
+    //Reto 5
+    @GetMapping("/price/{price}")
+    public List<CleaningProduct> gadgetsByPrice(@PathVariable("price") double precio) {
+        return accessoryService.productByPrice(precio);
+    }
+    //Reto 5
+    @GetMapping("/description/{description}")
+    public List<CleaningProduct> findByDescriptionLike(@PathVariable("description") String description) {
+        return accessoryService.findByDescriptionLike(description);
+    }
 
 }

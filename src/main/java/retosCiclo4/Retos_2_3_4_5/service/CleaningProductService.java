@@ -86,4 +86,13 @@ public class CleaningProductService {
         }).orElse(false);
         return aBoolean;
     }
+    
+    //Reto 5
+   public List<CleaningProduct> productByPrice(double price) {
+        return cleaningProduct.productByPrice(price);
+    }
+
+    public List<CleaningProduct> findByDescriptionLike(String description) {
+        return cleaningProduct.findByDescriptionLike(description);
+    }
 }
